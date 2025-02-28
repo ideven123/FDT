@@ -1,0 +1,49 @@
+设计实验：
+1. 用目标攻击或者非目标攻击 -> 改变非鲁棒特征
+    结果：模型直接准确率20%
+2. 用样本对蒸馏的方式进行(直接把LinfPGD改的) eps = 0.03
+    结果：模型准确率还行93%, 模型的鲁棒性不好？
+    Accuracy: 92.40%, eps: 0.01, PGD Accuracy: 27.30%
+    Accuracy: 92.40%, eps: 0.02, PGD Accuracy: 3.40%
+    Accuracy: 92.40%, eps: 0.03, PGD Accuracy: 0.00%
+
+    eps = 0.05
+    Accuracy: 91.60%, eps: 0.01, PGD Accuracy: 37.20%                                                                                                                                                                                                                                        
+    Accuracy: 91.60%, eps: 0.02, PGD Accuracy: 10.10%                                                                                                                                                                                                                                        
+    Accuracy: 91.60%, eps: 0.03, PGD Accuracy: 1.10%    
+
+    eps = 0.07
+    Accuracy: 90.50%, eps: 0.01, PGD Accuracy: 45.60%                                                                                                                                                                                                                                                  
+    Accuracy: 90.50%, eps: 0.02, PGD Accuracy: 17.70%                                                                                                                                                                                                                                                  
+    Accuracy: 90.50%, eps: 0.03, PGD Accuracy: 3.90%                                                                                                                                                                                                                                                   
+    Accuracy: 90.50%, eps: 0.04, PGD Accuracy: 0.70%
+
+    eps = 0.09
+    Accuracy: 90.30%, eps: 0.01, PGD Accuracy: 48.10%                                                                                                                                                                                                                                           
+    Accuracy: 90.30%, eps: 0.02, PGD Accuracy: 20.10%                                                                                                                                                                                                                                           
+    Accuracy: 90.30%, eps: 0.03, PGD Accuracy: 6.90%                                                                                                                                                                                                                                            
+    Accuracy: 90.30%, eps: 0.04, PGD Accuracy: 1.60% 
+
+3. 如果整个训练过程中只用预训练模型蒸馏出来的非鲁棒特征来训练(实现过程中对于每个batch都用pretrain_model进行蒸馏) -- 这里的蒸馏是根据distill蒸馏出来的
+    结果：模型准确率还行89%, 模型的鲁棒性还没测不知道 eps = 0.03
+    Accuracy: 91.70%, eps: 0.01, PGD Accuracy: 10.70%                                                                                                                                                                                                                                                  
+    Accuracy: 91.70%, eps: 0.02, PGD Accuracy: 0.20%                                                                                                                                                                                                                                                   
+    Accuracy: 91.70%, eps: 0.03, PGD Accuracy: 0.00% 
+
+    eps = 0.05
+    Accuracy: 88.80%, eps: 0.01, PGD Accuracy: 19.90%                                                                                                                                                                                                                                        
+    Accuracy: 88.80%, eps: 0.02, PGD Accuracy: 0.60%                                                                                                                                                                                                                                         
+    Accuracy: 88.80%, eps: 0.03, PGD Accuracy: 0.00%
+    
+    eps = 0.07
+    Accuracy: 88.00%, eps: 0.01, PGD Accuracy: 24.00%                                                                                                         
+    Accuracy: 88.00%, eps: 0.02, PGD Accuracy: 1.30%                                                                                                          
+    Accuracy: 88.00%, eps: 0.03, PGD Accuracy: 0.00%
+
+    eps = 0.09
+    Accuracy: 88.20%, eps: 0.01, PGD Accuracy: 23.00%                                                                                                                                                                                                                                
+    Accuracy: 88.20%, eps: 0.02, PGD Accuracy: 0.90%                                                                                                                                                                                                                                 
+    Accuracy: 88.20%, eps: 0.03, PGD Accuracy: 0.00% 
+4. 接下来看一下eps改成0.05的效果
+
+接下来要改进一下ADVgan在CIFAR10上的模型效果：
